@@ -90,11 +90,11 @@ export default class App extends Component {
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="9">
-              <FileOutlined />
               <Link to="/others">
-                <span>
+              <FileOutlined />
+              <span>
                   其他
-                  </span>
+              </span>
               </Link>
             </Menu.Item>
           </Menu>
