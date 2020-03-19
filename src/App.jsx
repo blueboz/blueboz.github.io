@@ -34,69 +34,87 @@ export default class App extends Component {
               <div className={styles.logo} />
               <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                 <Menu.Item key="1">
-                  <PieChartOutlined />
-                  <span>
-                    <Link to="/statics">统计</Link>
-                  </span>
+                    <Link to="/statics">
+                    <PieChartOutlined />
+                    <span>
+                      统计
+                    </span>
+                    </Link>
                 </Menu.Item>
                 <Menu.Item key="2">
+                    <Link to="/generic">
                   <DesktopOutlined />
                   <span>
-                    <Link to="/generic">概览</Link>
+                      概览
                   </span>
+                      </Link>
                 </Menu.Item>
                 <SubMenu
-                  key="sub1"
-                  title={
+              key="sub1"
+              title={
+                <span>
+                    <UserOutlined />
                     <span>
-                      <UserOutlined />
-                      <span>
-                      <Link to="/info">个人中心</Link>
-                        </span>
-                    </span>
-                  }
-                >
-                  <Menu.Item key="3">Blueboz</Menu.Item>
-                
-                </SubMenu>
-                <SubMenu
-                  key="sub2"
-                  title={
-                    <span>
-                      <TeamOutlined />
-                      <span>
-                      <Link to="/blog">博客</Link>
-                      </span>
-                    </span>
-                  }
-                >
-                  <Menu.Item key="6">c++</Menu.Item>
-                  <Menu.Item key="8">java</Menu.Item>
-                </SubMenu>
-                <Menu.Item key="9">
-                  <FileOutlined />
+                      个人中心
+                     </span>
+                </span>
+              }
+            >
+              <Menu.Item key="3">
+                <Link to={"info"}>
+                  Blueboz
+                </Link>
+              </Menu.Item>
+
+            </SubMenu>
+            <SubMenu
+              key="sub2"
+              title={
+                <span>
+                  <TeamOutlined />
                   <span>
-                    <Link to="/others">其他</Link>
+                    博客
+                      </span>
+                </span>
+              }
+            >
+              <Menu.Item key="6">
+                <Link to="/blog/cpp">
+                  c++
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="8">
+                <Link to="/blog/java">
+                  java
+                </Link>
+              </Menu.Item>
+            </SubMenu>
+            <Menu.Item key="9">
+              <FileOutlined />
+              <Link to="/others">
+                <span>
+                  其他
                   </span>
-                </Menu.Item>
-              </Menu>
-            </Sider>
-            <Layout className="site-layout">
-              <Header className="site-layout-background" style={{ padding: 0 }} />
-              <Content style={{ margin: '0 16px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                </Breadcrumb>
-                <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                  <Route path="/statics" component={statics}></Route>
-                  <Route path="/generic" component={generic}></Route>
-                  <Route path="/info" component={info}></Route>
-                  <Route path="/blog" component={blog}></Route>
-                  <Route path="/others" component={others}></Route>
-                </div>
-              </Content>
-              <Footer style={{ textAlign: 'center' }}>My Website ©2020 Created by blueboz</Footer>
-            </Layout>
-          </Layout>
-        )
-    }
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Content style={{ margin: '0 16px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+            </Breadcrumb>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              <Route path="/statics" component={statics}></Route>
+              <Route path="/generic" component={generic}></Route>
+              <Route path="/info" component={info}></Route>
+              <Route path="/blog" component={blog}></Route>
+              <Route path="/others" component={others}></Route>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>My Website ©2020 Created by blueboz</Footer>
+        </Layout>
+      </Layout>
+    )
+  }
 }
