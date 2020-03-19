@@ -35,18 +35,24 @@ export default class App extends Component {
               <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                 <Menu.Item key="1">
                   <PieChartOutlined />
-                  <Link to="/statics">统计</Link>
+                  <span>
+                    <Link to="/statics">统计</Link>
+                  </span>
                 </Menu.Item>
                 <Menu.Item key="2">
                   <DesktopOutlined />
-                  <Link to="/generic">概览</Link>
+                  <span>
+                    <Link to="/generic">概览</Link>
+                  </span>
                 </Menu.Item>
                 <SubMenu
                   key="sub1"
                   title={
                     <span>
                       <UserOutlined />
+                      <span>
                       <Link to="/info">个人中心</Link>
+                        </span>
                     </span>
                   }
                 >
@@ -58,7 +64,9 @@ export default class App extends Component {
                   title={
                     <span>
                       <TeamOutlined />
+                      <span>
                       <Link to="/blog">博客</Link>
+                      </span>
                     </span>
                   }
                 >
@@ -67,17 +75,17 @@ export default class App extends Component {
                 </SubMenu>
                 <Menu.Item key="9">
                   <FileOutlined />
-                  <Link to="/others">其他</Link>
+                  <span>
+                    <Link to="/others">其他</Link>
+                  </span>
                 </Menu.Item>
               </Menu>
             </Sider>
             <Layout className="site-layout">
               <Header className="site-layout-background" style={{ padding: 0 }} />
               <Content style={{ margin: '0 16px' }}>
-                {/* <Breadcrumb style={{ margin: '16px 0' }}>
-                  <Breadcrumb.Item>User</Breadcrumb.Item>
-                  <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                </Breadcrumb> */}
+                <Breadcrumb style={{ margin: '16px 0' }}>
+                </Breadcrumb>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                   <Route path="/statics" component={statics}></Route>
                   <Route path="/generic" component={generic}></Route>
