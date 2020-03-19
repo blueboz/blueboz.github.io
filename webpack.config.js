@@ -16,7 +16,44 @@ module.exports={
     },
     module:{
         rules:[
-            {test:/\.js|jsx$/,use:'babel-loader',exclude:/node_modules/}
+            {test:/\.js|jsx$/,use:'babel-loader',exclude:/node_modules/},
+            { test: /\.less$/, use: [ 'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    modules:true
+                }
+            },
+            'less-loader' ] },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', {
+                        loader: 'css-loader',
+                        options: {
+                            //支持@important引入css
+                            importLoaders: 1
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function() {
+                                return [
+                                    //一定要写在require("autoprefixer")前面，否则require("autoprefixer")无效
+                                    require('postcss-import')(),
+                                    require("autoprefixer")({
+                                        "browsers": ["Android >= 4.1", "iOS >= 7.0", "ie >= 8"]
+                                    })
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
         ]
     },
     resolve:{
