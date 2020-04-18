@@ -19,14 +19,12 @@ import { GroovyIcon, JavaIcon,CIcon,PythonIcon } from './component/icocomp/Custo
 
 export default class App extends Component {
   state = {
-    collapsed: false,
+    collapsed: true,
     data: {
-      defaultOpenKeys:["groovy"],
-      defaultSelectedKeys:["61"],
       datas: [
         {
           key: "groovy", techType: 'Groovy', items: [
-            { name: 'Groovy 语言文档v3.0.3', link: "/blog/groovy/references", key: "61" }
+            { name: 'Groovy 语言文档v3.0.3', link: "/blog/groovy/references/Groovy 语言文档v3.0.3.md", key: "61" }
           ]
         },
         { key: "java", techType: 'Java', items: [] },
@@ -79,7 +77,7 @@ export default class App extends Component {
           <div className={styles.logo} >
             <div className={styles.logoimg}></div>
           </div>
-          <Menu theme="light" defaultOpenKeys={this.state.data.defaultOpenKeys} defaultSelectedKeys={this.state.data.defaultSelectedKeys} mode="inline">
+          <Menu theme="dark" defaultOpenKeys={this.state.data.defaultOpenKeys} defaultSelectedKeys={this.state.data.defaultSelectedKeys} mode="inline">
             {
               this.renderSubMenu()
             }
@@ -93,7 +91,7 @@ export default class App extends Component {
           </Header>
           <Content style={{ margin: '0 16px'}}>
               <div style={{overflowY:'scroll',height:'100%',background:'white',margin:'20px',padding:'15px'}}>
-                <Route path="/blog/:type/:article" component={blog}></Route>
+                <Route path="/blog/:type/:article/:art_name" component={blog}></Route>
               </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>博客栈 ©2020 Created by blueboz</Footer>

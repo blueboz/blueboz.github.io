@@ -81,8 +81,8 @@ assert Foo.class.getMethod('bar', new Class[0]).groovydoc.content.contains('Some
 
 ### 1.1.2 关键字
 
-|        |         |            |            |
-| ------ | ------- | ---------- | ---------- |
+|  参数   | 说明     |            |            |
+|:------:|:-------:|:----------:|:----------:|
 | as     | assert  | break      | case       |
 | catch  | class   | const      | continue   |
 | def    | default | do         | else       |
