@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactMarkdown from 'react-markdown'
 
+
 export default class blog extends Component {
     constructor(props){
         super(props)
@@ -19,10 +20,9 @@ export default class blog extends Component {
     }
     render() {
         return (
-            <div>
-                <h3>博客--{this.props.match.params.type}--{this.props.match.params.article}</h3>
-                <ReactMarkdown source={this.state.article}></ReactMarkdown>
-            </div>
+            <ReactMarkdown style={{height:133,overflowY:'scroll'}} source={this.state.article}
+            renderers={{"java":<div style={{width:'10px',height:'10px',background:'red'}}></div>}}
+    ></ReactMarkdown>
         )
     }
 }

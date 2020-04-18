@@ -74,7 +74,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{height:'100%',overflow:"hidden"}}>
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className={styles.logo} >
             <div className={styles.logoimg}></div>
@@ -87,14 +87,14 @@ export default class App extends Component {
 
 
         </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ paddingLeft: 25, color: 'white', fontSize: 'large' }} >
+        <Layout >
+          <Header  style={{ paddingLeft: 25, color: 'white', fontSize: 'large' }} >
             尾田的博客小栈
           </Header>
-          <Content style={{ margin: '0 16px' }}>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              <Route path="/blog/:type/:article" component={blog}></Route>
-            </div>
+          <Content style={{ margin: '0 16px'}}>
+              <div style={{overflowY:'scroll',height:'100%',background:'white',margin:'20px',padding:'15px'}}>
+                <Route path="/blog/:type/:article" component={blog}></Route>
+              </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>博客栈 ©2020 Created by blueboz</Footer>
         </Layout>
