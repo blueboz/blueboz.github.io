@@ -1,12 +1,31 @@
 .logo {
-    height: 32px;
-    width: 32px;
+    height: 48px;
+    width: 48px;
     // background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584633620370&di=3a441903f20de63c4cabf3bab908b8bc&imgtype=0&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D1830056159%2C3414366009%26fm%3D214%26gp%3D0.jpg) ;
-    background-image: url(./images/cat.png) ;
+    // background-image: url(./images/icons.jpg) ;
     background-size: cover;
-    margin: 16px;
+    border-radius: 100%;
+    margin: 8px auto;
+    cursor: pointer;
+    overflow: hidden;
+    &:hover{
+        box-shadow: 0px 0px 10px #fff;
+        transition: 0.4s ease all;
+    }
 }
 
+.logoimg{
+    width: 100%;
+    height: 100%;
+    background-image: url(./images/icons.jpg) ;
+    background-size: cover;
+    &:hover{
+        transform: scale(1);
+        transition: 0.4s ease-in all;
+    }
+
+
+}
 .site-layout .site-layout-background {
     background: #fff;
 }

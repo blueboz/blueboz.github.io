@@ -8,111 +8,95 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import {Route,Link} from  'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import blog from './component/blog'
-import generic from './component/generic'
-import info from './component/info'
-import others from './component/others'
-import statics from './component/statics'
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 import styles from './App.less'
+import { GroovyIcon, JavaIcon,CIcon,PythonIcon } from './component/icocomp/CustomIcons';
+
 
 export default class App extends Component {
-    state = {
-        collapsed: false,
-    };
-    onCollapse = collapsed => {
-        console.log(collapsed);
-        this.setState({ collapsed });
-    };
-    render() {
-        return (
-            <Layout style={{ minHeight: '100vh' }}>
-            <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-              <div className={styles.logo} />
-              <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                <Menu.Item key="1">
-                    <Link to="/statics">
-                    <PieChartOutlined />
-                    <span>
-                      统计
-                    </span>
-                    </Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <Link to="/generic">
-                  <DesktopOutlined />
-                  <span>
-                      概览
-                  </span>
-                      </Link>
-                </Menu.Item>
-                <SubMenu
-              key="sub1"
-              title={
-                <span>
-                    <UserOutlined />
-                    <span>
-                      个人中心
-                     </span>
-                </span>
-              }
-            >
-              <Menu.Item key="3">
-                <Link to={"info"}>
-                  Blueboz
-                </Link>
-              </Menu.Item>
+  state = {
+    collapsed: false,
+    data: {
+      defaultOpenKeys:["groovy"],
+      defaultSelectedKeys:["61"],
+      datas: [
+        {
+          key: "groovy", techType: 'Groovy', items: [
+            { name: 'Groovy 语言文档v3.0.3', link: "/blog/groovy/references", key: "61" }
+          ]
+        },
+        { key: "java", techType: 'Java', items: [] },
+        { key: "c", techType: 'C', items: [] },
+        { key: "python", techType: 'Python', items: [] }
+      ]
 
-            </SubMenu>
-            <SubMenu
-              key="sub2"
-              title={
-                <span>
-                  <TeamOutlined />
-                  <span>
-                    博客
-                      </span>
-                </span>
+    }
+  };
+  onCollapse = collapsed => {
+    this.setState({ collapsed });
+  };
+  renderSubMenu = () => {
+    return this.state.data.datas.map(item => {
+      return <SubMenu key={item.key} title={
+        <span>
+          {
+            (()=>{
+              if(item.techType=="Java"){
+                return <JavaIcon></JavaIcon>
+              }else if(item.techType=="C"){
+                return <CIcon></CIcon>
+              }else if(item.techType=="Groovy"){
+                return <GroovyIcon></GroovyIcon>
+              }else if(item.techType=="Python"){
+                return <PythonIcon></PythonIcon>
               }
-            >
-              <Menu.Item key="6">
-                <Link to="/blog/cpp">
-                  c++
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="8">
-                <Link to="/blog/java">
-                  java
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9">
-              <Link to="/others">
-              <FileOutlined />
-              <span>
-                  其他
-              </span>
+            })()
+          }
+          <span>{item.techType}</span>
+        </span>
+      } >
+        {
+          item.items.map((it) => {
+            return <Menu.Item key={it.key}>
+              <Link to={it.link}>
+                {it.name}
               </Link>
             </Menu.Item>
+          })
+
+        }
+      </SubMenu>
+    })
+  }
+  render() {
+    return (
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+          <div className={styles.logo} >
+            <div className={styles.logoimg}></div>
+          </div>
+          <Menu theme="light" defaultOpenKeys={this.state.data.defaultOpenKeys} defaultSelectedKeys={this.state.data.defaultSelectedKeys} mode="inline">
+            {
+              this.renderSubMenu()
+            }
           </Menu>
+
+
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
+          <Header className="site-layout-background" style={{ paddingLeft: 25, color: 'white', fontSize: 'large' }} >
+            尾田的博客小栈
+          </Header>
           <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-            </Breadcrumb>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              <Route path="/statics" component={statics}></Route>
-              <Route path="/generic" component={generic}></Route>
-              <Route path="/info" component={info}></Route>
-              <Route path="/blog" component={blog}></Route>
-              <Route path="/others" component={others}></Route>
+              <Route path="/blog/:type/:article" component={blog}></Route>
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>My Website ©2020 Created by blueboz</Footer>
+          <Footer style={{ textAlign: 'center' }}>博客栈 ©2020 Created by blueboz</Footer>
         </Layout>
       </Layout>
     )
