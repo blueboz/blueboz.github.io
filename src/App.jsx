@@ -13,7 +13,6 @@ import Main from './component/main';
 
 export default class App extends Component {
   state = {
-    collapsed: true,
     data: {
       defaultOpenKeys:[],
       defaultSelectedKeys:[],
@@ -27,12 +26,36 @@ export default class App extends Component {
         { key: "c", techType: 'C', items: [] },
         { key: "python", techType: 'Python', items: [] },
         { key: "others", techType: '其他', items: [
-            { name: 'idea 2020.01 激活方法.md', link: "/blog/groovy/references/idea 2020.01 激活方法.md", key: "51" }
+            { name: 'idea 2020.01 激活方法.md', link: "/blog/others/references/idea 2020.01 激活方法.md", key: "51" }
         ] }
       ]
     }
   };
+  constructor(props){
+    super(props)
+    if(!window.localStorage){
+      alert("浏览器支持localstorage");
+      return false;
+    }else{
+        var storage=window.localStorage;
+        //写入a字段
+        //写入b字段
+        if(storage.getItem("collapse")){
+          this.state.collapsed= storage.getItem("collapse")=="true"?true:false;
+        }
+    } 
+  }
   onCollapse = collapsed => {
+    console.log(collapsed)
+    if(!window.localStorage){
+      alert("浏览器支持localstorage");
+      return false;
+    }else{
+        var storage=window.localStorage;
+        //写入a字段
+        //写入b字段
+        storage.setItem("collapse",collapsed)
+    }
     this.setState({ collapsed });
   };
   renderSubMenu = () => {

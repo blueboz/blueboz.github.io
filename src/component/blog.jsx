@@ -4,12 +4,21 @@ import CodeBlock from "@/codeBlock";
 
 export default class blog extends Component {
     constructor(props){
+        //哈希值如果变化的时候，需要重新刷新页面
         super(props)
         this.state={
             article:''
         }
+        //注册哈希值的变化
+        window.onhashchange = this.hashChanged;
     }
-    componentWillMount(){
+    hashChanged=()=>{
+        this.loadData();
+    }
+    componentWillReceiveProps(nextProps){
+
+    }
+    loadData=()=>{
         fetch("/dist/"+this.props.match.params.art_name)
             .then(res=>res.text())
             .then(res=>{
@@ -22,6 +31,9 @@ export default class blog extends Component {
                 }
                 this.setState({article:res})
             })
+    }
+    componentWillMount(){
+        this.loadData();
     }
     render() {
         return (
