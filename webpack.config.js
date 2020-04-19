@@ -1,6 +1,7 @@
 const path=require('path')
 const HtmlWebPackPlugin=require('html-webpack-plugin')//导入内存中自动生成index页面的插件
 
+
 const htmlPlugin=new HtmlWebPackPlugin({
     template:path.join(__dirname,'./src/index.html'),
     filename:'index.html'
@@ -26,7 +27,7 @@ module.exports={
             },
             'less-loader' ] },
             {
-                test: /\.(png|jpg|gif|svg)$/,
+                test: /\.(png|jpg|gif|svg|ttf|woff|eot)$/,
                 use: ['file-loader']
             },
             {

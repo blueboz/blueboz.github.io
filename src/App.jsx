@@ -9,6 +9,7 @@ const { SubMenu } = Menu;
 import styles from './App.less'
 import { GroovyIcon, JavaIcon,CIcon,PythonIcon,OthersIcon } from './component/icocomp/CustomIcons';
 import Main from './component/main';
+import './assets/icomoon/style.css'
 
 
 export default class App extends Component {
@@ -43,7 +44,7 @@ export default class App extends Component {
         if(storage.getItem("collapse")){
           this.state.collapsed= storage.getItem("collapse")=="true"?true:false;
         }
-    } 
+    }
   }
   onCollapse = collapsed => {
     console.log(collapsed)
@@ -100,7 +101,6 @@ export default class App extends Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <Link to="/">
             <div className={styles.logo} >
-
               <div className={styles.logoimg}></div>
             </div>
           </Link>
@@ -109,12 +109,16 @@ export default class App extends Component {
               this.renderSubMenu()
             }
           </Menu>
-
-
         </Sider>
         <Layout >
-          <Header  style={{ paddingLeft: 25, color: 'white', fontSize: 'large' }} >
-            尾田的博客小栈
+          <Header style={{ position:'relative', paddingLeft: 25, color: 'white', fontSize: 'large' ,overflow:'hidden'}} >
+            <span>尾田的博客小栈</span>
+            <div style={{position:'absolute',right:100,top:-60}}>
+              <span className="icon-electronics" style={{
+                    fontSize:128,lineHeight:1,textAlign:'right'
+                  }}>
+              </span>
+            </div>
           </Header>
           <Content style={{ margin: '0 16px'}}>
               <div style={{overflowY:'scroll',height:'100%',background:'white',margin:'20px',padding:'15px'}}>
