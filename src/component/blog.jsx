@@ -13,7 +13,7 @@ export default class blog extends Component {
         fetch("/dist/"+this.props.match.params.art_name)
             .then(res=>res.text())
             .then(res=>{
-                console.log("read")
+                res=res.replace("./","/dist/");
                 this.setState({article:res})
             })
     }
