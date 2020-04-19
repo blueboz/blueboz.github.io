@@ -13,7 +13,13 @@ export default class blog extends Component {
         fetch("/dist/"+this.props.match.params.art_name)
             .then(res=>res.text())
             .then(res=>{
-                res=res.replace("./","/dist/");
+                //只替换图片相关的URL
+                var arrs=res.match(/!\[.*\]\((.*)\)/g);
+                if(arrs!=null){
+                    arrs.forEach(item=>{
+                        res=res.replace(item,item.replace(/\.\//g,'/dist/'));
+                    })
+                }
                 this.setState({article:res})
             })
     }
